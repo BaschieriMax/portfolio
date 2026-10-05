@@ -1,0 +1,77 @@
+.sidebar {
+  flex: 1 1 var(--sidebar-basis);
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 2.5vw, 2.25rem);
+  background: var(--color-surface);
+}
+
+.avatar {
+  width: 168px;
+  height: 168px;
+  margin: 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: var(--tap-target);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+}
+
+a.contactItem:hover {
+  color: var(--color-accent);
+}
+
+.contactIcon {
+  display: inline-flex;
+  flex: none;
+}
+
+.contactLabel {
+  overflow-wrap: anywhere;
+}
+
+.pairList,
+.interestList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin: 0;
+}
+
+.pairRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+dd {
+  margin: 0;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.interestList dt {
+  font-size: var(--font-size-sm);
+}
+
+.interestDetail {
+  font-weight: 600;
+}
