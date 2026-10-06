@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // User site (BaschieriMax.github.io) is served from the domain root
+  // Netlify serves the site from the domain root
   base: '/',
   plugins: [react()],
   test: {

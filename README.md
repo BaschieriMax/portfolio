@@ -1,7 +1,7 @@
 # Portfolio — Massimo Baschieri
 
-Portfolio personale one-page, online su **https://baschierimax.github.io**.
-Il QR code nel CV punta a questo indirizzo.
+Portfolio personale one-page, online su **https://massimobaschieriportfolio.netlify.app**.
+Il QR code nel CV punta a `https://baschierimax.github.io`, che reindirizza qui (vedi [Deploy](#deploy)).
 
 React 19 · TypeScript (strict) · Vite · CSS Modules · Zustand · React Hook Form + Zod · Axios · Web3Forms
 
@@ -48,14 +48,23 @@ src/
 
 ## Deploy
 
-Ogni push su `main` esegue lint, test e build e pubblica su GitHub Pages
-(`.github/workflows/deploy.yml`). Le pull request eseguono solo i controlli.
+Il sito è su **Netlify** (configurazione in `netlify.toml`). Ogni push su `main` esegue
+lint, test e build e pubblica; se un controllo fallisce resta online la versione precedente.
+Le pull request generano una deploy preview.
 
-Configurazione una tantum del repository:
+Configurazione una tantum su Netlify:
 
-1. **Settings → Pages → Source**: `GitHub Actions`.
-2. **Settings → Secrets and variables → Actions → New repository secret**:
-   `VITE_WEB3FORMS_ACCESS_KEY` con la chiave di Web3Forms.
+1. **Add new project → Import an existing project → GitHub** e scegli questo repo
+   (build e cartella vengono letti da `netlify.toml`, Node da `.nvmrc`).
+2. **Project configuration → Environment variables**: `VITE_WEB3FORMS_ACCESS_KEY` con la chiave
+   di Web3Forms. Vite la inserisce in fase di build: dopo averla aggiunta o cambiata serve
+   **Deploys → Trigger deploy**.
+3. Nome del progetto: `massimobaschieriportfolio`.
+
+### Redirect per il QR del CV
+
+Il repo `BaschieriMax.github.io` su GitHub Pages contiene solo i file di
+[`github-pages-redirect/`](github-pages-redirect/README.md), che rimandano al sito su Netlify.
 
 ## Documentazione
 
