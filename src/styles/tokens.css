@@ -12,6 +12,11 @@
   --color-on-accent: #ffffff;
   --color-error: #b3261e;
   --color-focus: #1f4e5f;
+  /* Project status badges (text/background pairs meet WCAG AA) */
+  --color-status-progress-bg: #fdf3c7;
+  --color-status-progress-text: #7a5300;
+  --color-status-done-bg: #dff3e4;
+  --color-status-done-text: #1e6b3a;
 
   /* Typography */
   --font-family: 'Poppins', system-ui, sans-serif;

@@ -1,8 +1,14 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, CircleCheck, Clock, type LucideIcon } from 'lucide-react'
 import { useTranslation } from '../../i18n/useTranslation'
-import type { Project } from '../../types/content'
+import type { Project, ProjectStatus } from '../../types/content'
 import { TagList } from '../TagList/TagList'
 import styles from './ProjectCard.module.css'
+
+/** Icon next to the status label, so the state is not conveyed by color alone. */
+const STATUS_ICONS: Record<ProjectStatus, LucideIcon> = {
+  'in-progress': Clock,
+  completed: CircleCheck,
+}
 
 interface ProjectCardProps {
   project: Project
@@ -10,6 +16,7 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   const { t, locale } = useTranslation()
+  const StatusIcon = STATUS_ICONS[project.status]
 
   const links = [
     { href: project.repoUrl, label: t.projects.code },
@@ -20,7 +27,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     <article className={styles.card}>
       <div className={styles.header}>
         <h3 className={styles.title}>{project.title}</h3>
-        <span className={styles.status}>{t.projects.status[project.status]}</span>
+        <span className={styles.status} data-status={project.status}>
+          <StatusIcon size={14} aria-hidden="true" />
+          {t.projects.status[project.status]}
+        </span>
       </div>
       {project.company && (
         <p className={styles.company}>

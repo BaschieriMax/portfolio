@@ -33,11 +33,23 @@
 
 .status {
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   padding: 3px 10px;
   border-radius: var(--radius-pill);
-  background: var(--color-surface);
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.status[data-status='in-progress'] {
+  background: var(--color-status-progress-bg);
+  color: var(--color-status-progress-text);
+}
+
+.status[data-status='completed'] {
+  background: var(--color-status-done-bg);
+  color: var(--color-status-done-text);
 }
 
 .company {

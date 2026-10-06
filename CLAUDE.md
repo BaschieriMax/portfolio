@@ -59,3 +59,6 @@ Panoramica, script e struttura: [README.md](README.md).
    npm test
    npm run build
    ```
+
+4. Commit in locale dopo ogni modifica, ma **niente push automatici**: ogni push su `main` consuma una build
+   Netlify. Si fa push (e quindi deploy) solo dopo una modifica importante o quando Massimo lo chiede.

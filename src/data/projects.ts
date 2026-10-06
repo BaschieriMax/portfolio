@@ -39,7 +39,7 @@ export const projects: Project[] = [
       it: 'Web app per pianificare alimentazione e allenamento: catalogo alimenti con macro e micronutrienti, ricette, piani nutrizionali calcolati e versionati, diario alimentare, schede con regole di progressione dei carichi e monitoraggio di peso e misure. I suggerimenti dell’AI vengono applicati solo dopo la conferma dell’utente. In progettazione: dominio e schema del database definiti.',
       en: 'Web app to plan nutrition and training: food catalog with macro and micronutrients, recipes, calculated and versioned nutrition plans, food diary, workout plans with load progression rules, and weight and body measurement tracking. AI suggestions are applied only after the user confirms them. In design: domain model and database schema defined.',
     },
-    stack: ['C#', 'ASP.NET Core', 'EF Core', 'PostgreSQL'],
+    stack: ['React', 'TypeScript', 'Vite', 'C#', 'ASP.NET Core', 'EF Core', 'PostgreSQL'],
     status: 'in-progress',
   },
 ]
