@@ -27,6 +27,8 @@
   --color-status-done-text: #1e6b3a;
   --color-selection-bg: #cfe5ec;
   --color-backdrop: rgb(43 43 43 / 0.45);
+  /* Edge shadow of the top bar links when some are scrolled out of view */
+  --color-scroll-shadow: rgb(43 43 43 / 0.16);
 
   /* Typography */
   --font-family: 'Poppins', system-ui, sans-serif;
@@ -64,9 +66,14 @@
   --shadow-button-hover: 0 6px 16px rgb(31 78 95 / 0.25);
 
   /* Layout */
-  --sidebar-basis: 360px;
+  --sidebar-width: 360px;
   --content-max-width: 56rem;
+  --topbar-height: 4.375rem;
   --tap-target: 44px;
+  /*
+   * Breakpoint: media queries cannot read custom properties, so `60rem` is written as a literal
+   * in App and Sidebar. From 60rem the sidebar sits beside the content and stays in place.
+   */
 }
 
 /*
@@ -97,6 +104,7 @@
   --color-status-done-text: #8fd9a8;
   --color-selection-bg: #2d5866;
   --color-backdrop: rgb(0 0 0 / 0.6);
+  --color-scroll-shadow: rgb(0 0 0 / 0.4);
 
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
   --shadow-card-hover: 0 12px 28px rgb(0 0 0 / 0.45);

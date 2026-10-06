@@ -1,30 +1,63 @@
+/*
+ * Sticky top bar. It stretches edge to edge across the content padding
+ * (--content-pad-x, set in App.module.css) so the scrolling text never shows at its sides.
+ */
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-
-.topBar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
   gap: var(--space-4);
+  min-height: var(--topbar-height);
+  margin-inline: calc(-1 * var(--content-pad-x, 0px));
+  padding: var(--space-2) var(--content-pad-x, 0px);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.nav {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/*
+ * Links never wrap: on narrow screens the row scrolls sideways (scrollbar hidden).
+ * Scroll shadows, pure CSS: the `local` covers move with the links and hide the `scroll`
+ * shadows, so a shadow shows only on the side where links are out of view.
+ */
+.navList {
+  display: flex;
+  gap: clamp(var(--space-4), 2.5vw, var(--space-5));
+  margin: 0;
+  /* Room for the focus outline, which the scrolling list would otherwise clip */
+  padding: var(--space-1);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  background:
+    linear-gradient(to right, var(--color-bg) 30%, transparent) left / 2.5rem 100% no-repeat local,
+    linear-gradient(to left, var(--color-bg) 30%, transparent) right / 2.5rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--color-scroll-shadow), transparent) left / 0.875rem
+      100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--color-scroll-shadow), transparent) right /
+      0.875rem 100% no-repeat scroll;
+}
+
+.navList::-webkit-scrollbar {
+  display: none;
+}
+
+.navList > li {
+  flex: none;
 }
 
 .controls {
   display: flex;
+  flex: none;
   align-items: center;
   gap: var(--space-2);
-}
-
-.navList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-5);
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
 .navLink {
@@ -36,6 +69,7 @@
   font-size: var(--font-size-sm);
   font-weight: 500;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 /* Underline grows from the left on hover */
@@ -56,42 +90,12 @@
   color: var(--color-accent);
 }
 
+/* Outline only: the scrolling list would clip the soft halo of the global focus style */
 .navLink:focus-visible {
   border-radius: 4px;
+  box-shadow: none;
 }
 
 .navLink:hover::after {
   transform: scaleX(1);
-}
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-  padding-top: var(--space-5);
-}
-
-.name {
-  font-size: var(--font-size-display);
-  font-weight: 600;
-  letter-spacing: var(--letter-spacing-wide);
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.role {
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-  letter-spacing: 0.06em;
-}
-
-.intro {
-  max-width: 40rem;
-  color: var(--color-text-muted);
-  font-size: 1rem;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
 }

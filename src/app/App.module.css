@@ -1,20 +1,28 @@
-/*
- * Sidebar + content as a wrapping row: side by side on wide screens,
- * stacked on phones, with no media query needed for the switch.
- */
+/* Phones and tablets: sidebar stacked above the content, the whole page scrolls */
 .layout {
-  display: flex;
-  flex-wrap: wrap;
   min-height: 100vh;
 }
 
+/*
+ * Wide screens: sidebar beside the content. The sidebar is sticky (Sidebar.module.css),
+ * so only the content moves while scrolling. Breakpoint documented in tokens.css.
+ */
+@media (min-width: 60rem) {
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
 .content {
-  flex: 999 1 35rem;
-  min-width: 0;
+  /* Read by the sticky top bar to stretch edge to edge across this padding */
+  --content-pad-x: clamp(1.25rem, 5vw, 5.5rem);
+
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
-  padding: clamp(1.75rem, 5vw, 4.5rem) clamp(1.25rem, 5vw, 5.5rem);
+  min-width: 0;
+  padding: 0 var(--content-pad-x) clamp(1.75rem, 5vw, 4.5rem);
 }
 
 .main {
@@ -22,4 +30,5 @@
   flex-direction: column;
   gap: var(--space-8);
   max-width: var(--content-max-width);
+  padding-block: clamp(2rem, 5vw, 3.5rem) var(--space-8);
 }

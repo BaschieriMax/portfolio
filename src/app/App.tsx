@@ -7,6 +7,7 @@ import { Education } from '../sections/Education/Education'
 import { Experience } from '../sections/Experience/Experience'
 import { Footer } from '../sections/Footer/Footer'
 import { Header } from '../sections/Header/Header'
+import { Hero } from '../sections/Hero/Hero'
 import { Projects } from '../sections/Projects/Projects'
 import { Sidebar } from '../sections/Sidebar/Sidebar'
 import { Skills } from '../sections/Skills/Skills'
@@ -46,6 +47,7 @@ export const App = () => {
       <div className={styles.content}>
         <Header />
         <main className={styles.main}>
+          <Hero />
           <Experience />
           <Projects />
           <Skills />

@@ -71,3 +71,11 @@ Stato: Proposed / Approved / Superseded.
 - **Data**: 2026-10-06 · **Stato**: Approved
 - **Decisione**: in `netlify.toml` Content Security Policy (solo risorse same-origin, `connect-src` aperto solo a `https://api.web3forms.com`, nessun `eval`, `frame-ancestors 'none'`), `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`. Zod è configurato `jitless` (`contactSchema.ts`) perché il suo test di `new Function` verrebbe segnalato come violazione. Aggiunti `robots.txt` e `sitemap.xml`.
 - **Trade-off**: `style-src` consente `'unsafe-inline'` (necessario per react-hot-toast e gli attributi `style` di React); un nuovo servizio esterno (analytics, font, API) va aggiunto esplicitamente alla CSP, altrimenti viene bloccato.
+
+## D-011 — Sidebar fissa su schermi larghi e top bar sticky
+
+- **Data**: 2026-10-06 · **Stato**: Approved
+- **Contesto**: su schermi larghi la sidebar scorreva via insieme al contenuto; su mobile i link della top bar andavano a capo su più righe.
+- **Decisione**: da 60rem in su il layout è una griglia `--sidebar-width | contenuto` e la sidebar è `position: sticky; height: 100vh`, quindi scorre solo il contenuto (se la finestra è bassa la sidebar scorre per conto suo, senza scrollbar visibile). Sotto i 60rem resta tutto impilato. La top bar (`Header`: link + tema + lingua) è sticky e a tutta larghezza; nome, intro e pulsanti sono passati nella sezione `Hero`, dentro `<main>`. I link non vanno mai a capo: se non c'è spazio la riga scorre in orizzontale, con ombre ai bordi solo CSS (sfondi `local`/`scroll`) che compaiono solo quando ci sono link nascosti. Scrollbar della pagina sottile e con binario trasparente (`scrollbar-width: thin`, colore dai token). `scroll-margin-top` delle sezioni tiene conto di `--topbar-height`.
+- **Alternative**: contenitore `main` con scroll proprio (`overflow: auto`) — scartato: rompe ancore, scroll da tastiera e la barra del browser mobile; scrollbar della pagina nascosta del tutto — scartata: chi usa il mouse perde l'indicazione della posizione; menu hamburger su mobile — rimandato: richiede JS e stato, per 5 link basta la riga scorrevole.
+- **Conseguenze**: il breakpoint `60rem` è scritto come letterale in `App.module.css` e `Sidebar.module.css` (le media query non leggono le custom property); la top bar usa `--content-pad-x`, definita in `.content`.

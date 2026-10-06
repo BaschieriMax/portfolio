@@ -7,6 +7,9 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Thin scrollbar with an invisible track, tinted like the borders */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
 }
 
 body {
@@ -62,9 +65,9 @@ textarea {
   color: var(--color-text);
 }
 
-/* Anchor targets are not hidden under the top of the viewport */
+/* Anchor targets are not hidden under the sticky top bar */
 section[id] {
-  scroll-margin-top: var(--space-6);
+  scroll-margin-top: calc(var(--topbar-height) + var(--space-5));
 }
 
 .visually-hidden {

@@ -1,10 +1,32 @@
 .sidebar {
-  flex: 1 1 var(--sidebar-basis);
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
   padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 2.5vw, 2.25rem);
   background: var(--color-surface);
+}
+
+/* Blocks keep their natural height when the sidebar has a fixed height */
+.sidebar > * {
+  flex-shrink: 0;
+}
+
+/*
+ * Wide screens: the sidebar stays in place while the content scrolls (same breakpoint
+ * as App.module.css). On short windows it scrolls on its own, without a visible scrollbar.
+ */
+@media (min-width: 60rem) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .avatar {
