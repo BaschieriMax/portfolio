@@ -17,6 +17,20 @@
   padding-bottom: var(--space-3);
 }
 
+/* Fade-in on scroll; with reduced motion the content is never hidden */
+@media (prefers-reduced-motion: no-preference) {
+  .main {
+    transition:
+      opacity 700ms var(--ease-out),
+      transform 700ms var(--ease-out);
+  }
+
+  .main[data-visible='false'] {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
 .sidebar {
   gap: var(--space-3);
 }

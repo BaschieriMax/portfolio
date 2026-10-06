@@ -1,5 +1,7 @@
 /* Design tokens — palette and typography taken from the CV */
 :root {
+  color-scheme: light;
+
   /* Colors */
   --color-bg: #ffffff;
   --color-surface: #f3f3f3;
@@ -23,6 +25,8 @@
   --color-status-progress-text: #7a5300;
   --color-status-done-bg: #dff3e4;
   --color-status-done-text: #1e6b3a;
+  --color-selection-bg: #cfe5ec;
+  --color-backdrop: rgb(43 43 43 / 0.45);
 
   /* Typography */
   --font-family: 'Poppins', system-ui, sans-serif;
@@ -63,4 +67,38 @@
   --sidebar-basis: 360px;
   --content-max-width: 56rem;
   --tap-target: 44px;
+}
+
+/*
+ * Dark theme (D-009): only colors and shadows change. The attribute is set before
+ * first paint by public/theme-init.js (saved choice, otherwise the system theme).
+ */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #121a1d;
+  --color-surface: #1a2428;
+  --color-text: #e6eaeb;
+  --color-text-muted: #a3adb0;
+  --color-border: #2c3a3f;
+  --color-border-strong: #4a5b61;
+  --color-accent: #6fb3c8;
+  --color-accent-hover: #8cc6d8;
+  --color-on-accent: #0f1d22;
+  --color-error: #f2857b;
+  --color-focus: #6fb3c8;
+  --color-field-bg: #172125;
+  --color-placeholder: #7d898c;
+  --color-focus-ring: rgb(111 179 200 / 0.35);
+  --color-error-ring: rgb(242 133 123 / 0.25);
+  --color-status-progress-bg: #3a3214;
+  --color-status-progress-text: #f3d779;
+  --color-status-done-bg: #173323;
+  --color-status-done-text: #8fd9a8;
+  --color-selection-bg: #2d5866;
+  --color-backdrop: rgb(0 0 0 / 0.6);
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+  --shadow-card-hover: 0 12px 28px rgb(0 0 0 / 0.45);
+  --shadow-button-hover: 0 6px 16px rgb(0 0 0 / 0.45);
 }

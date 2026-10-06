@@ -7,6 +7,9 @@ Panoramica, script e struttura: [README.md](README.md).
 
 - React 19 + Vite + TypeScript **strict**
 - CSS Modules per componente; colori, font e spaziature solo tramite i token in `src/styles/tokens.css`
+- Tema chiaro/scuro (D-009): ogni nuovo colore va definito nei token **per entrambi i temi**
+  (`:root` e `:root[data-theme='dark']`), mai scritto direttamente in un componente
+- CSP restrittiva su Netlify (D-010): un nuovo servizio esterno (API, font, analytics) va aggiunto alla CSP in `netlify.toml`
 - Zustand **solo** per la lingua (`src/stores/languageStore.ts`); niente altro stato globale
 - Form contatti: React Hook Form + Zod + Axios verso Web3Forms (`src/services/`), toast con react-hot-toast
 - Icone: lucide-react; le icone dei brand (GitHub, LinkedIn) stanno in `src/components/BrandIcon` (D-007)
@@ -59,6 +62,10 @@ Panoramica, script e struttura: [README.md](README.md).
    npm test
    npm run build
    ```
+
+   Il progetto sta in una cartella OneDrive: se `npm test` fallisce con `EBUSY: resource busy or locked`
+   su file di `node_modules`, è un blocco di sincronizzazione, non un errore del codice. Rilanciare con
+   `npx vitest run --no-file-parallelism`.
 
 4. Commit in locale dopo ogni modifica, ma **niente push automatici**: ogni push su `main` consuma una build
    Netlify. Si fa push (e quindi deploy) solo dopo una modifica importante o quando Massimo lo chiede.

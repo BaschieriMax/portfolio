@@ -1,0 +1,24 @@
+/* Same height and outline as LanguageSwitch, so the two controls sit together */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-target);
+  height: var(--tap-target);
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) ease,
+    transform var(--duration-base) var(--ease-out);
+}
+
+.toggle:hover {
+  background: var(--color-surface);
+}
+
+.toggle:active {
+  transform: rotate(-20deg) scale(0.94);
+}

@@ -1,6 +1,9 @@
 import { z } from 'zod'
 import type { Dictionary } from '../../i18n/it'
 
+// No JIT: the CSP forbids eval (D-010), and zod's `new Function` probe would be reported as a violation
+z.config({ jitless: true })
+
 export type ValidationMessageKey = keyof Dictionary['contact']['validation']
 
 /** Keeps the schema locale-agnostic: errors carry a dictionary key, translated at render time. */

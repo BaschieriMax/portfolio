@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://massimobaschieriportfolio.netlify.app/sitemap.xml

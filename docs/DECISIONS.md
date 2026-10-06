@@ -57,3 +57,17 @@ Stato: Proposed / Approved / Superseded.
 - **Decisione**: sito su `https://massimobaschieriportfolio.netlify.app`, collegato al repo GitHub (deploy a ogni push su `main`, deploy preview per le pull request). Configurazione in `netlify.toml`: build `npm run lint && npm test && npm run build`, publish `dist`, rewrite `/* → /index.html`. Il repo `BaschieriMax.github.io` resta su GitHub Pages solo con la pagina di redirect in `github-pages-redirect/`, così il QR continua a funzionare. Rimosso il workflow GitHub Actions di deploy: lint e test girano nella build di Netlify, che non pubblica se falliscono.
 - **Alternative**: rigenerare il QR con l'URL Netlify (scartato: il CV con il vecchio QR può essere già in circolazione); dominio personale (rimandato, vedi TD-005); mantenere GitHub Actions per i controlli (scartato: duplicherebbe quello che fa già Netlify).
 - **Conseguenze**: due repo da tenere (portfolio + redirect); chi scansiona il QR passa per un redirect lato client (meta refresh + `location.replace`, mantiene l'ancora `#sezione`). La access key di Web3Forms va impostata nelle Environment variables di Netlify.
+
+## D-009 — Tema scuro con `data-theme` su `<html>`
+
+- **Data**: 2026-10-06 · **Stato**: Approved
+- **Contesto**: si aggiunge un tema scuro con pulsante nell'header; la convenzione è usare Zustand solo per la lingua.
+- **Decisione**: i colori scuri ridefiniscono gli stessi token in `:root[data-theme='dark']` (`src/styles/tokens.css`), quindi i componenti non cambiano. `public/theme-init.js`, caricato in modo bloccante nell'`<head>`, imposta `data-theme` prima del primo paint: scelta salvata in `localStorage` (`portfolio-theme`), altrimenti tema di sistema, che viene seguito finché non c'è una scelta esplicita. In React l'attributo è l'unica fonte di verità: `useTheme` lo legge con `useSyncExternalStore` + `MutationObserver`. Il colore della barra del browser mobile (`theme-color`) segue il tema.
+- **Alternative**: store Zustand per il tema (scartato: violerebbe la convenzione e servirebbe comunque lo script prima del paint); solo `prefers-color-scheme` senza pulsante (scartato: l'utente non può scegliere); funzione CSS `light-dark()` (scartata: supporto ancora non universale su iOS meno recenti); script inline in `index.html` (scartato: con la CSP di D-010 richiederebbe un hash da aggiornare a ogni modifica).
+- **Conseguenze**: ogni nuovo colore va definito nei token per entrambi i temi; il sito richiede JavaScript (già vero per una SPA React).
+
+## D-010 — Intestazioni di sicurezza su Netlify
+
+- **Data**: 2026-10-06 · **Stato**: Approved
+- **Decisione**: in `netlify.toml` Content Security Policy (solo risorse same-origin, `connect-src` aperto solo a `https://api.web3forms.com`, nessun `eval`, `frame-ancestors 'none'`), `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`. Zod è configurato `jitless` (`contactSchema.ts`) perché il suo test di `new Function` verrebbe segnalato come violazione. Aggiunti `robots.txt` e `sitemap.xml`.
+- **Trade-off**: `style-src` consente `'unsafe-inline'` (necessario per react-hot-toast e gli attributi `style` di React); un nuovo servizio esterno (analytics, font, API) va aggiunto esplicitamente alla CSP, altrimenti viene bloccato.

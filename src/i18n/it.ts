@@ -20,6 +20,10 @@ export const it = {
     label: 'Lingua',
     switchTo: 'Passa a',
   },
+  theme: {
+    toDark: 'Passa al tema scuro',
+    toLight: 'Passa al tema chiaro',
+  },
   sidebar: {
     photoAlt: 'Foto di Massimo Baschieri',
     contacts: 'Contatti',

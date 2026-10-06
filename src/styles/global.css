@@ -47,9 +47,19 @@ textarea {
   color: inherit;
 }
 
+/*
+ * Site-wide focus: solid accent outline plus the same soft halo used by the form fields
+ * (which override it with border + halo). The outline alone keeps a 3:1 contrast.
+ */
 :focus-visible {
   outline: 2px solid var(--color-focus);
-  outline-offset: 3px;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 calc(var(--focus-ring-width) + 4px) var(--color-focus-ring);
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-text);
 }
 
 /* Anchor targets are not hidden under the top of the viewport */

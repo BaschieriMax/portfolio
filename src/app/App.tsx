@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
+import { useTheme } from '../hooks/useTheme'
 import { useTranslation } from '../i18n/useTranslation'
 import { Contact } from '../sections/Contact/Contact'
 import { Education } from '../sections/Education/Education'
@@ -22,8 +23,22 @@ const useDocumentMeta = () => {
   }, [locale, t])
 }
 
+/** Tints the mobile browser bar with the sidebar color of the active theme. */
+const useThemeColor = () => {
+  const { theme } = useTheme()
+
+  useEffect(() => {
+    const surface = getComputedStyle(document.documentElement)
+      .getPropertyValue('--color-surface')
+      .trim()
+    if (surface)
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', surface)
+  }, [theme])
+}
+
 export const App = () => {
   useDocumentMeta()
+  useThemeColor()
 
   return (
     <div className={styles.layout}>
@@ -41,7 +56,16 @@ export const App = () => {
       </div>
       <Toaster
         position="bottom-center"
-        toastOptions={{ style: { fontFamily: 'var(--font-family)', fontSize: '0.875rem' } }}
+        toastOptions={{
+          style: {
+            fontFamily: 'var(--font-family)',
+            fontSize: '0.875rem',
+            color: 'var(--color-text)',
+            background: 'var(--color-bg)',
+            border: '1px solid var(--color-border)',
+            boxShadow: 'var(--shadow-card)',
+          },
+        }}
       />
     </div>
   )

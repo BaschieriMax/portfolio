@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { Button } from '../../components/Button/Button'
 import { LanguageSwitch } from '../../components/LanguageSwitch/LanguageSwitch'
+import { ThemeToggle } from '../../components/ThemeToggle/ThemeToggle'
 import { profile } from '../../data/profile'
 import { useTranslation } from '../../i18n/useTranslation'
 import styles from './Header.module.css'
@@ -30,7 +31,10 @@ export const Header = () => {
             ))}
           </ul>
         </nav>
-        <LanguageSwitch />
+        <div className={styles.controls}>
+          <ThemeToggle />
+          <LanguageSwitch />
+        </div>
       </div>
 
       <div className={styles.hero}>

@@ -32,6 +32,7 @@ src/
 ├── components/   componenti UI generici e riutilizzabili (Button, Section, TagList, …)
 ├── sections/     le sezioni della pagina (Sidebar, Header, Experience, Projects, …)
 ├── data/         contenuti tipizzati, ogni testo in { it, en }
+├── hooks/        hook condivisi (tema chiaro/scuro, animazione allo scorrimento)
 ├── i18n/         etichette dell'interfaccia (it.ts è la forma di riferimento)
 ├── stores/       stato globale (solo la lingua)
 ├── services/     client Axios e invio del form a Web3Forms

@@ -18,6 +18,10 @@ export const en: Dictionary = {
     label: 'Language',
     switchTo: 'Switch to',
   },
+  theme: {
+    toDark: 'Switch to dark theme',
+    toLight: 'Switch to light theme',
+  },
   sidebar: {
     photoAlt: 'Photo of Massimo Baschieri',
     contacts: 'Contact',
