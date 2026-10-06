@@ -5,5 +5,5 @@
 
 /* Reserves the form's height while its chunk loads, so the page does not jump */
 .formPlaceholder {
-  min-height: 26rem;
+  min-height: 33rem;
 }

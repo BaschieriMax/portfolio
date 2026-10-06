@@ -12,6 +12,12 @@
   --color-on-accent: #ffffff;
   --color-error: #b3261e;
   --color-focus: #1f4e5f;
+  /* Form fields: soft halo around the focused control, tinted from the accent */
+  --color-field-bg: #fafafa;
+  --color-placeholder: #8c8c8c;
+  --color-focus-ring: rgb(58 142 168 / 0.32);
+  --color-error-ring: rgb(179 38 30 / 0.18);
+  --focus-ring-width: 4px;
   /* Project status badges (text/background pairs meet WCAG AA) */
   --color-status-progress-bg: #fdf3c7;
   --color-status-progress-text: #7a5300;
@@ -49,7 +55,9 @@
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 
   /* Elevation */
+  --shadow-card: 0 1px 2px rgb(43 43 43 / 0.04), 0 8px 24px rgb(43 43 43 / 0.05);
   --shadow-card-hover: 0 12px 28px rgb(43 43 43 / 0.1);
+  --shadow-button-hover: 0 6px 16px rgb(31 78 95 / 0.25);
 
   /* Layout */
   --sidebar-basis: 360px;

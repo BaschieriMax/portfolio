@@ -1,4 +1,5 @@
 import { useId, type ComponentPropsWithRef } from 'react'
+import { FieldError } from '../FieldError/FieldError'
 import styles from './TextField.module.css'
 
 interface CommonProps {
@@ -38,11 +39,7 @@ export const TextField = (props: TextFieldProps) => {
       ) : (
         <InputControl {...props} {...a11yProps} />
       )}
-      {error && (
-        <p id={errorId} className={styles.error} role="alert">
-          {error}
-        </p>
-      )}
+      {error && <FieldError id={errorId} message={error} />}
     </div>
   )
 }

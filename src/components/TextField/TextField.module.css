@@ -1,7 +1,7 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .label {
@@ -13,32 +13,41 @@
   width: 100%;
   min-height: 48px;
   padding: var(--space-3) 14px;
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background: var(--color-bg);
+  background: var(--color-field-bg);
   font-size: var(--font-size-md);
-  transition: border-color var(--duration-fast) ease;
+  transition:
+    border-color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.control::placeholder {
+  color: var(--color-placeholder);
 }
 
 textarea.control {
+  min-height: 9rem;
   resize: vertical;
 }
 
 .control:hover {
-  border-color: var(--color-text-muted);
+  border-color: var(--color-border-strong);
 }
 
+/* The halo replaces the outline; the transparent outline still shows in forced-colors mode */
 .control:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 1px;
-  border-color: var(--color-focus);
+  outline: 2px solid transparent;
+  border-color: var(--color-accent);
+  background: var(--color-bg);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--color-focus-ring);
 }
 
 .control[aria-invalid='true'] {
   border-color: var(--color-error);
 }
 
-.error {
-  color: var(--color-error);
-  font-size: var(--font-size-xs);
+.control[aria-invalid='true']:focus-visible {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--color-error-ring);
 }

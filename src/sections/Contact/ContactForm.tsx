@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Send } from 'lucide-react'
+import { LoaderCircle, Send } from 'lucide-react'
 import { useState } from 'react'
-import { useForm, type FieldError } from 'react-hook-form'
+import { useForm, type FieldError as HookFormFieldError } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { Button } from '../../components/Button/Button'
+import { FieldError } from '../../components/FieldError/FieldError'
 import { Modal } from '../../components/Modal/Modal'
 import { TextField } from '../../components/TextField/TextField'
 import { profile } from '../../data/profile'
@@ -39,7 +40,7 @@ export const ContactForm = () => {
     defaultValues: DEFAULT_VALUES,
   })
 
-  const errorText = (error?: FieldError) => {
+  const errorText = (error?: HookFormFieldError) => {
     const messages = t.contact.validation
     return isValidationMessageKey(error?.message, messages) ? messages[error.message] : undefined
   }
@@ -116,9 +117,7 @@ export const ContactForm = () => {
             </span>
           </label>
           {errors.privacy && (
-            <p id="privacy-error" className={styles.error} role="alert">
-              {errorText(errors.privacy)}
-            </p>
+            <FieldError id="privacy-error" message={errorText(errors.privacy) ?? ''} />
           )}
         </div>
 
@@ -126,7 +125,14 @@ export const ContactForm = () => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            icon={<Send size={18} aria-hidden="true" />}
+            aria-busy={isSubmitting}
+            icon={
+              isSubmitting ? (
+                <LoaderCircle size={18} aria-hidden="true" className={styles.spinner} />
+              ) : (
+                <Send size={18} aria-hidden="true" />
+              )
+            }
           >
             {isSubmitting ? t.contact.submitting : t.contact.submit}
           </Button>

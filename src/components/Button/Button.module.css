@@ -13,7 +13,14 @@
   transition:
     background-color var(--duration-fast) ease,
     color var(--duration-fast) ease,
-    border-color var(--duration-fast) ease;
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
 }
 
 .primary {
@@ -22,9 +29,11 @@
   color: var(--color-on-accent);
 }
 
-.primary:hover {
+.primary:hover:not(:disabled) {
   background: var(--color-accent-hover);
   color: var(--color-on-accent);
+  box-shadow: var(--shadow-button-hover);
+  transform: translateY(-1px);
 }
 
 .outline {
@@ -33,14 +42,18 @@
   color: var(--color-text);
 }
 
-.outline:hover {
+.outline:hover:not(:disabled) {
   background: var(--color-text);
   color: var(--color-bg);
 }
 
 .button:disabled {
-  opacity: 0.6;
+  opacity: 0.7;
   cursor: not-allowed;
+}
+
+.button[aria-busy='true'] {
+  cursor: progress;
 }
 
 .fullWidth {
@@ -52,6 +65,6 @@
   transition: transform var(--duration-base) var(--ease-out);
 }
 
-.button:hover .icon {
+.button:hover:not(:disabled) .icon {
   transform: translateX(3px);
 }
