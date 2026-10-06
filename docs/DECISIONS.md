@@ -35,7 +35,7 @@ Stato: Proposed / Approved / Superseded.
 - **Data**: 2026-10-05 · **Stato**: Approved
 - **Decisione**: validazione con schema Zod; gli errori sono chiavi del dizionario, tradotte al render (cambiando lingua cambiano anche gli errori già visibili). Invio con Axios a Web3Forms, honeypot `botcheck`, checkbox privacy obbligatoria non preselezionata, toast con react-hot-toast.
 - **Alternative**: TanStack Query `useMutation` (scartato: una sola POST, `isSubmitting` di RHF basta).
-- **Nota**: la access key di Web3Forms è pubblica per design; sta comunque in un secret di GitHub per non legarla al codice.
+- **Nota**: la access key di Web3Forms è pubblica per design; sta comunque in una variabile d'ambiente (`VITE_WEB3FORMS_ACCESS_KEY`, impostata nelle Environment variables di Netlify, vedi D-008) per non legarla al codice.
 
 ## D-006 — Lint con ESLint invece di oxlint
 
