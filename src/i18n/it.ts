@@ -10,6 +10,7 @@ export const it = {
   },
   nav: {
     label: 'Navigazione principale',
+    menu: 'Menu delle sezioni',
     experience: 'Esperienza',
     projects: 'Progetti',
     skills: 'Competenze',

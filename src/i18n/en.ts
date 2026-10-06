@@ -8,6 +8,7 @@ export const en: Dictionary = {
   },
   nav: {
     label: 'Main navigation',
+    menu: 'Sections menu',
     experience: 'Experience',
     projects: 'Projects',
     skills: 'Skills',

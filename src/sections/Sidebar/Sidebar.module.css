@@ -6,26 +6,17 @@
   background: var(--color-surface);
 }
 
-/* Blocks keep their natural height when the sidebar has a fixed height */
-.sidebar > * {
-  flex-shrink: 0;
-}
-
 /*
  * Wide screens: the sidebar stays in place while the content scrolls (same breakpoint
- * as App.module.css). On short windows it scrolls on its own, without a visible scrollbar.
+ * as App.module.css). `top` is set inline by useStickyTop: when the sidebar is taller
+ * than the window it first scrolls until its bottom is visible, then stops.
  */
 @media (min-width: 60rem) {
   .sidebar {
     position: sticky;
     top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    scrollbar-width: none;
-  }
-
-  .sidebar::-webkit-scrollbar {
-    display: none;
+    /* Fills the column when it is shorter than the window */
+    min-height: 100vh;
   }
 }
 

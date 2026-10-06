@@ -5,6 +5,7 @@ import { BrandIcon } from '../../components/BrandIcon/BrandIcon'
 import { Button } from '../../components/Button/Button'
 import { Section } from '../../components/Section/Section'
 import { contactLinks, interests, languages, profile } from '../../data/profile'
+import { useStickyTop } from '../../hooks/useStickyTop'
 import { useTranslation } from '../../i18n/useTranslation'
 import type { ContactLinkIcon } from '../../types/content'
 import styles from './Sidebar.module.css'
@@ -18,9 +19,11 @@ const ICONS: Record<ContactLinkIcon, ReactNode> = {
 
 export const Sidebar = () => {
   const { t, locale } = useTranslation()
+  // Applied only on wide screens, where the sidebar is sticky (ignored while it is static)
+  const { ref, top } = useStickyTop<HTMLElement>()
 
   return (
-    <aside className={styles.sidebar}>
+    <aside ref={ref} className={styles.sidebar} style={{ top }}>
       <img
         src={avatar}
         alt={t.sidebar.photoAlt}
