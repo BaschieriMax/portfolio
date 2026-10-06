@@ -17,6 +17,8 @@ export interface Project {
   description: Localized
   stack: string[]
   status: ProjectStatus
+  /** Set for work projects: the company (and client) it was built for. */
+  company?: Localized
   repoUrl?: string
   demoUrl?: string
 }

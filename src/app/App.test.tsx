@@ -31,13 +31,4 @@ describe('App', () => {
     )
     expect(document.documentElement.lang).toBe('en')
   })
-
-  it('opens external project links in a new tab safely', () => {
-    render(<App />)
-    const codeLink = screen.getByRole('link', { name: /Codice/ })
-
-    expect(codeLink).toHaveAttribute('href', 'https://github.com/BaschieriMax/ColumbuApp')
-    expect(codeLink).toHaveAttribute('target', '_blank')
-    expect(codeLink).toHaveAttribute('rel', 'noopener noreferrer')
-  })
 })

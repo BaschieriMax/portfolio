@@ -22,6 +22,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         <h3 className={styles.title}>{project.title}</h3>
         <span className={styles.status}>{t.projects.status[project.status]}</span>
       </div>
+      {project.company && (
+        <p className={styles.company}>
+          {t.projects.workProject} · {project.company[locale]}
+        </p>
+      )}
       <p className={styles.description}>{project.description[locale]}</p>
       <TagList items={project.stack} label={t.projects.stack} size="sm" />
       {links.length > 0 && (

@@ -46,6 +46,7 @@ export const en: Dictionary = {
     stack: 'Stack',
     code: 'Code',
     demo: 'Demo',
+    workProject: 'Work project',
     status: {
       'in-progress': 'In progress',
       completed: 'Completed',

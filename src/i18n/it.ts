@@ -48,6 +48,7 @@ export const it = {
     stack: 'Stack',
     code: 'Codice',
     demo: 'Demo',
+    workProject: 'Progetto aziendale',
     status: {
       'in-progress': 'In sviluppo',
       completed: 'Completato',
